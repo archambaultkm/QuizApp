@@ -13,12 +13,33 @@
         android:theme="@style/Theme.QuizzApp"
         tools:targetApi="31">
         <activity
+            android:name=".TitleActivity"
+            android:exported="true">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.HOME" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ResultsActivity"
+            android:exported="true">
+            <intent-filter>
+                <category android:name="android.intent.category." />
             </intent-filter>
 
             <meta-data

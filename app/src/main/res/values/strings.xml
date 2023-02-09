@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">QuizzApp</string>
+    <string name="txtTopicTitle">Topic: </string>
+    <string name="txtUserTopic">UserTopic</string>
+    <string name="txtPlay">Play</string>
+    <string name="txtQuestion">question</string>
+    <string name="txtAnswer1">answer1</string>
+    <string name="txtAnswer2">answer2</string>
+    <string name="txtAnswer3">answer3</string>
+    <string name="txtAnswer4">answer4</string>
+    <string name="txtNext">Next</string>
+    <string name="txtSeeResults">See Results</string>
+    <string name="txtScoreTitle">Your Score:</string>
+    <string name="txtUserScore">0/0</string>
+    <string name="txtPlayAgain">Play Again</string>
+    <string name="txtProgress">progress</string>
+    <string name="txtCorrect">Correct!</string>
+    <string name="txtIncorrect">Incorrect!</string>
 </resources>
