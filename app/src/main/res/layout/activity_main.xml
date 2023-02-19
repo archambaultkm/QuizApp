@@ -4,94 +4,65 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#81A7F0"
+    android:background="#DCEAFF"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    android:textAlignment="center">
 
     <TextView
-        android:id="@+id/tvHeader"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="@string/txtUserTopic"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF" />
-
-    <ProgressBar
-        android:id="@+id/pbProgress"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:progressTint="#DCEAFF" />
-
-    <TextView
-        android:id="@+id/tvQuestion"
+        android:id="@+id/tvAppName"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2"
-        android:text="@string/txtQuestion"
+        android:background="#81A7F0"
+        android:fontFamily="serif"
+        android:paddingTop="140dp"
+        android:text="@string/app_name"
         android:textAlignment="center"
-        android:textColor="#FFFFFF" />
+        android:textColor="#FFFFFF"
+        android:textSize="48sp" />
 
-    <Button
-        android:id="@+id/btnA1"
+    <TextView
+        android:id="@+id/tvTopic"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:backgroundTint="#5289F2"
         android:fontFamily="serif"
-        android:insetLeft="30dp"
-        android:insetTop="20dp"
-        android:insetRight="30dp"
-        android:insetBottom="20dp"
-        android:text="@string/txtAnswer1"
-        android:textSize="24sp"
-        app:cornerRadius="70dp" />
+        android:paddingTop="60dp"
+        android:rotationX="0"
+        android:text="@string/txtTopicTitle"
+        android:textAlignment="center"
+        android:textColor="#81A7F0"
+        android:textSize="24sp" />
 
-    <Button
-        android:id="@+id/btnA2"
+    <TextView
+        android:id="@+id/tvUserTopic"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:backgroundTint="#5289F2"
         android:fontFamily="serif"
-        android:insetLeft="30dp"
-        android:insetTop="20dp"
-        android:insetRight="30dp"
-        android:insetBottom="20dp"
-        android:text="@string/txtAnswer2"
-        android:textSize="24sp"
-        app:cornerRadius="70dp" />
+        android:paddingTop="60dp"
+        android:rotationX="0"
+        android:text="@string/txtUserTopic"
+        android:textAlignment="center"
+        android:textColor="#81A7F0"
+        android:textSize="24sp" />
 
     <Button
-        android:id="@+id/btnA3"
+        android:id="@+id/btnPlay"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:backgroundTint="#5289F2"
+        android:elevation="5dp"
         android:fontFamily="serif"
-        android:insetLeft="30dp"
-        android:insetTop="20dp"
-        android:insetRight="30dp"
-        android:insetBottom="20dp"
-        android:text="@string/txtAnswer3"
-        android:textSize="24sp"
-        app:cornerRadius="70dp" />
-
-    <Button
-        android:id="@+id/btnA4"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:backgroundTint="#5289F2"
-        android:fontFamily="serif"
-        android:insetLeft="30dp"
-        android:insetTop="20dp"
-        android:insetRight="30dp"
-        android:insetBottom="20dp"
-        android:text="@string/txtAnswer4"
-        android:textSize="24sp"
-        app:cornerRadius="70dp" />
-
+        android:insetLeft="50dp"
+        android:insetTop="100dp"
+        android:insetRight="50dp"
+        android:insetBottom="100dp"
+        android:stateListAnimator="@null"
+        android:text="@string/txtPlay"
+        android:textSize="30sp"
+        android:translationZ="2dp"
+        app:cornerRadius="70dp"
+        tools:ignore="TextContrastCheck" />
 </LinearLayout>

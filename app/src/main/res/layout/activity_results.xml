@@ -17,6 +17,8 @@
         android:paddingTop="140dp"
         android:text="@string/txtUserTopic"
         android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
         android:textSize="48sp" />
 
     <TextView
@@ -29,6 +31,8 @@
         android:rotationX="0"
         android:text="@string/txtScoreTitle"
         android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
         android:textSize="24sp" />
 
     <TextView
@@ -41,6 +45,8 @@
         android:rotationX="0"
         android:text="@string/txtUserScore"
         android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
         android:textSize="24sp" />
 
     <Button
