@@ -2,7 +2,6 @@ package com.example.quizzapp;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,8 +9,6 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.annotation.RequiresApi;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -34,7 +31,9 @@ public class QuizActivity extends Activity {
     private final HashMap<String, String> pairs = new HashMap<>();
 
     String currentQuestion;
+
     int progressCount;
+    int totalQuestions;
     int correctlyAnsweredCount;
 
     @Override
@@ -67,10 +66,15 @@ public class QuizActivity extends Activity {
             public void onClick(View view) {
 
                 //on app creation make a constant number for total starting questions
-                if (progressCount == pb.getMax()) {
+                if (progressCount == totalQuestions) {
 
-                    startActivity(new Intent(QuizActivity.this, ResultsActivity.class));
+                    Intent i = new Intent(QuizActivity.this, ResultsActivity.class);
+
                     //carry over count of correctly answered questions
+                    i.putExtra("questions", totalQuestions);
+                    i.putExtra("correct", correctlyAnsweredCount);
+
+                    startActivity(i);
 
                 } else {
 
@@ -91,8 +95,10 @@ public class QuizActivity extends Activity {
         Collections.shuffle(questions);
         currentQuestion = questions.get(0);
 
+        totalQuestions = questions.size();
+
         //set the bounds of the progress bar
-        pb.setMax(questions.size());
+        pb.setMax(totalQuestions);
 
         //initialize the count of questions answered correctly
         correctlyAnsweredCount = 0;
@@ -117,8 +123,8 @@ public class QuizActivity extends Activity {
                 //doesn't work:
                 //clickedButton.setBackgroundColor(getResources().getColor(R.color.green));
                 Toast.makeText(QuizActivity.this,"Correct!",Toast.LENGTH_SHORT).show();
+                correctlyAnsweredCount += 1;
 
-                //add to correct answer count
             } else {
                 //clickedButton.setBackground(red button drawable);
                 Toast.makeText(QuizActivity.this,"Incorrect!",Toast.LENGTH_SHORT).show();

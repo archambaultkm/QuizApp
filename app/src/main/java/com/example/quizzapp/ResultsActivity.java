@@ -13,6 +13,9 @@ public class ResultsActivity extends Activity {
     private TextView tvScore;
     private Button btnPlayAgain;
 
+    int totalQuestions;
+    int answeredCorrectly;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -24,10 +27,17 @@ public class ResultsActivity extends Activity {
         tvScore = findViewById(R.id.tvUserScore);
         btnPlayAgain = findViewById(R.id.btnPlayAgain);
 
+        Bundle extras = getIntent().getExtras();
+
+        if (extras != null) {
+            totalQuestions = extras.getInt("questions");
+            answeredCorrectly = extras.getInt("correct");
+        }
+
         //this will need to be read in from the text file if I keep this feature.
         tvUserTopic.setText("Imported Topic");
         //set text to be passed user score / passed total questions
-        tvScore.setText("/");
+        tvScore.setText(answeredCorrectly + "/" + totalQuestions);
 
         btnPlayAgain.setOnClickListener(new View.OnClickListener() {
             @Override
