@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:background="#DCEAFF"
     android:orientation="vertical"
-    android:textAlignment="center">
+    android:textAlignment="center"
+    tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/tvAppName"
@@ -22,7 +23,7 @@
         android:textSize="48sp" />
 
     <TextView
-        android:id="@+id/tvTopic"
+        android:id="@+id/tvUserTopic"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"

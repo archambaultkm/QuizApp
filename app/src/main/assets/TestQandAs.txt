@@ -1,4 +1,20 @@
-A sad colour$$blue
-A love colour$$pink
-An angry colour$$red
-A sunset colour$$orange
+Due to its ability to work with memory directly, C++ is often used to program what?$$low-level systems that require the direct manipulation of memory, ex. drivers
+This is the automatic reclamation (deterministically or non-deterministically) of memory occupied by objects that are no longer referenced (being used).$$Garbage collection
+What type of garbage collection does C++ employ?$$Deterministic
+You would use this if an object is destroyed explicitly by applying the delete operator to a base-class pointer to the object, where the base-class destructor function (matching the pointer type) is called on the object, not the destructor most appropriate to the class being destroyed.$$Virtual base class destructor
+When an object is created, its state can be initialized by this type of method. In most object-oriented languages, this method would have the same name as the class and would be created automatically if the programmer did not create one.$$Constructor
+C++ has this additional feature to establish the state of an object (the values in its properties at the time of instantiation) that is not a feature of all object-oriented languages:$$Initializer list
+This is the “blueprint” for an object. It is the code that defines an object, and all objects are created (instanced) based on this. It is an abstraction of a real-world concept, and it provides the basis from which we create instances of specific objects.$$Class
+This is the concept that a new class can be based on an existing class. This is done by extending (adding to) these behaviors from the existing class through a process known as sub classing or generalization.$$Inheritance
+This is when we include objects as instance variables (members) of other classes:$$Composition
+In C++, the break statement causes immediate exit when executed in specific selection and repetition statements. This includes the ________ statements.$$Switch statements.
+What is true about function prototypes (aka function declarations) regarding their invocation, definition, order, and requirement?$$Must be declared before they are invoked
+What is true about function signatures regarding their scope and the compilers’ matching of parameters during a call?$$They must match exactly
+Which is the correct header for using strings from the C++ Standard Library of Headers?$$#include <string>
+The C++ Standard Library class template vector is used to create?$$Dynamic arrays
+An array is a contiguous group of memory locations that all have the same type. To refer to a single storage location of an array we refer to its name and _________ (see below) in square brackets.$$Index
+array<int,5>myArray={1,2,3,4,5}; is an example of the use of what?$$Array initialization
+When creating an integer array, if there are fewer initializers than array elements, which of the following happens?$$Garbage data
+When you use the [ ] operator to access an array element that does not exist (is said to be 'out of bounds'), what occurs?$$Undefined behaviour
+The C++ 11 range-based 'for' statement is better than a counter-controlled statement for accessing an array for what reason?$$No counter or end condition
+The statement "using namespace std" means what?$$all names in the std namespace can be used without specifying manually
