@@ -10,30 +10,17 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Random;
-
 public class QuizActivity extends Activity {
 
-    private final int NUM_CHOICES = 4;
     private static final String TAG = "QuizActivity";
 
     private TextView tvUserTopic, tvQuestion;
     private ProgressBar pb;
     private Button btnAns1, btnAns2, btnAns3, btnAns4, btnNext;
 
-    private final ArrayList<String> questions = new ArrayList<>();
-    private final ArrayList<String> answers = new ArrayList<>();
-
-    private final HashMap<String, String> pairs = new HashMap<>();
-
-    String currentQuestion;
+    QuizManager quizManager;
 
     int progressCount;
-    int totalQuestions;
     int correctlyAnsweredCount;
 
     @Override
@@ -66,39 +53,30 @@ public class QuizActivity extends Activity {
             public void onClick(View view) {
 
                 //on app creation make a constant number for total starting questions
-                if (progressCount == totalQuestions) {
+                if (progressCount == quizManager.getTotalQuestions()) {
 
                     Intent i = new Intent(QuizActivity.this, ResultsActivity.class);
 
                     //carry over count of correctly answered questions
-                    i.putExtra("questions", totalQuestions);
+                    i.putExtra("questions", quizManager.getTotalQuestions());
                     i.putExtra("correct", correctlyAnsweredCount);
 
                     startActivity(i);
 
                 } else {
 
-                    questions.remove(0);
-                    //call resetui function
+                    quizManager.removeAnsweredQuestion();
                     newQuestion();
                 }
             }
         }); //end onclick)
 
-        //read in values from text file and fill arraylists
-        loadTextFile();
-
-        //link questions and answers
-        createHash();
-
-        //randomize order of questions
-        Collections.shuffle(questions);
-        currentQuestion = questions.get(0);
-
-        totalQuestions = questions.size();
+        quizManager = new QuizManager(getApplicationContext());
+        //the QuizManager class will:
+        //load the file, create arraylists and hash, and handle randomizing questions/answers
 
         //set the bounds of the progress bar
-        pb.setMax(totalQuestions);
+        pb.setMax(quizManager.getTotalQuestions());
 
         //initialize the count of questions answered correctly
         correctlyAnsweredCount = 0;
@@ -118,7 +96,7 @@ public class QuizActivity extends Activity {
             String buttonText = clickedButton.getText().toString();
 
             //for each button
-            if (buttonText.matches(pairs.get(currentQuestion))) {
+            if (buttonText.matches(quizManager.getCurrentAnswer())) {
                 //clickedButton.setBackground(green button drawable);
                 //doesn't work:
                 //clickedButton.setBackgroundColor(getResources().getColor(R.color.green));
@@ -136,93 +114,24 @@ public class QuizActivity extends Activity {
         }
     }; //end onclick
 
-    private void loadTextFile() {
-
-        InputStream inputStream;
-        BufferedReader reader = null;
-
-        try {
-            inputStream = getAssets().open("TestQandAs.txt");
-
-            if (inputStream != null) {
-
-                reader = new BufferedReader(new InputStreamReader(inputStream));
-
-                //while there are still lines to read, add q/a to respective arraylists
-                String line;
-                String[] pair;
-
-                while ((line = reader.readLine()) != null) {
-
-                    pair = line.split("\\$\\$");
-
-                    questions.add(pair[0]);
-                    answers.add(pair[1]);
-                }
-            }
-
-        } catch (IOException e) {
-
-            e.printStackTrace();
-
-        } finally {
-            if (reader != null) {
-                try {
-                    reader.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-
-    private void createHash() {
-
-        //create relationship between questions and answers
-        for (int i=0; i<questions.size();i++) {
-            pairs.put(questions.get(i), answers.get(i));
-        }
-
-    }
-
     private void newQuestion() {
 
-        //probably move to "update ui" method
         btnNext.setVisibility(View.INVISIBLE);
 
         progressCount += 1;
         pb.setProgress(progressCount);
 
-        currentQuestion = questions.get(0);
+        tvQuestion.setText(quizManager.getCurrentQuestion());
 
-        ArrayList<String> choices = new ArrayList<>(4);
-        Random rand = new Random();
+        //I had to do this bc calling this method internally in the
+        // getchoices was randomizing the return and I was getting duplicates.
+        //I need to find a way to not have to do this:
+        quizManager.createChoiceSet();
 
-        //add the correct answer to available choices
-        choices.add(pairs.get(currentQuestion));
-
-        //populate the rest of the choices with random answers
-        for (int i = 0; i<(NUM_CHOICES-1); i++) {
-
-            int randIndex = rand.nextInt(answers.size());
-
-            //make sure all answers are unique
-            while (choices.contains(answers.get(randIndex))) {
-                randIndex = rand.nextInt(answers.size());
-            }
-
-            choices.add(answers.get(randIndex));
-        }
-
-        //randomize the order the answers will appear
-        Collections.shuffle(choices);
-
-        tvQuestion.setText(currentQuestion);
-
-        btnAns1.setText(choices.get(0));
-        btnAns2.setText(choices.get(1));
-        btnAns3.setText(choices.get(2));
-        btnAns4.setText(choices.get(3));
+        btnAns1.setText(quizManager.getChoices().get(0));
+        btnAns2.setText(quizManager.getChoices().get(1));
+        btnAns3.setText(quizManager.getChoices().get(2));
+        btnAns4.setText(quizManager.getChoices().get(3));
     }
 
 }
