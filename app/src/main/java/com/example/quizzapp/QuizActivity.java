@@ -3,20 +3,13 @@ package com.example.quizzapp;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
-
-import com.google.android.material.snackbar.Snackbar;
-
 public class QuizActivity extends Activity {
-
-    private static final String TAG = "QuizActivity";
 
     private TextView tvQuestion, tvProgressCount;
     private ProgressBar pb;
@@ -91,27 +84,25 @@ public class QuizActivity extends Activity {
 
     }//end oncreate
 
+    //onclick for answer buttons
     public View.OnClickListener onAnswerClicked = new View.OnClickListener() {
 
         @Override
         public void onClick(View view) {
 
-            //check the answer on the button against the real answer, apply colours to buttons.
             Button clickedButton = (Button)view;
             String buttonText = clickedButton.getText().toString();
 
-            //for each button
+            //check the answer on the button against the real answer, apply colours to buttons.
             if (buttonText.matches(quizManager.getCurrentAnswer())) {
-                //clickedButton.setBackground(green button drawable);
-                //doesn't work:
-                //clickedButton.setBackgroundColor(getResources().getColor(R.color.green));
-                Toast.makeText(QuizActivity.this, R.string.txtCorrect, Toast.LENGTH_SHORT).show();
+
+                clickedButton.setBackground(getResources().getDrawable(R.drawable.button_correct, getTheme()));
                 correctlyAnsweredCount += 1;
 
             } else {
-                //clickedButton.setBackground(red button drawable);
-                Toast.makeText(QuizActivity.this, R.string.txtIncorrect, Toast.LENGTH_SHORT).show();
-            }
+
+                clickedButton.setBackground(getResources().getDrawable(R.drawable.button_incorrect, getTheme()));
+                }
 
             //disable buttons to prevent multiple answers on the same question
             setButtonsEnabled(false);
@@ -120,20 +111,19 @@ public class QuizActivity extends Activity {
         }
     }; //end onclick
 
+    //updates ui
     private void newQuestion() {
 
         btnNext.setVisibility(View.INVISIBLE);
-        //resetButtons();
         setButtonsEnabled(true);
+        resetButtons();
 
         updateProgressBar();
-
-        tvQuestion.setText(quizManager.getCurrentQuestion());
-
-        //I had to do this bc calling this method internally in the
-        //getchoices() method was randomizing the return and I was getting duplicates
+        //see if there's a way to not need this public method from
         quizManager.createChoiceSet();
 
+        //update the text displayed
+        tvQuestion.setText(quizManager.getCurrentQuestion());
         btnAns1.setText(quizManager.getChoices().get(0));
         btnAns2.setText(quizManager.getChoices().get(1));
         btnAns3.setText(quizManager.getChoices().get(2));
@@ -147,11 +137,12 @@ public class QuizActivity extends Activity {
         tvProgressCount.setText("Question " + progressCount + " of " + quizManager.getTotalQuestions());
     }
 
-    //only needed if you can get changing colours to work:
-    //    private void resetButtons() {
-//        btnAns1.setBackgroundColor(R.color);
-//        btnAns2.refreshDrawableState();
-//    }
+    private void resetButtons() {
+        btnAns1.setBackground(getResources().getDrawable(R.drawable.button_default, getTheme()));
+        btnAns2.setBackground(getResources().getDrawable(R.drawable.button_default, getTheme()));
+        btnAns3.setBackground(getResources().getDrawable(R.drawable.button_default, getTheme()));
+        btnAns4.setBackground(getResources().getDrawable(R.drawable.button_default, getTheme()));
+    }
 
     private void setButtonsEnabled(boolean toggle) {
         btnAns1.setEnabled(toggle);

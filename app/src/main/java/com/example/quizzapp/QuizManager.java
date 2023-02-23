@@ -1,6 +1,7 @@
 package com.example.quizzapp;
 
 import android.content.Context;
+import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -56,6 +57,31 @@ public class QuizManager {
         currentQuestion = questions.get(0);
     }
 
+    public void createChoiceSet() {
+
+        choices = new ArrayList<>(NUM_CHOICES);
+        Random rand = new Random();
+
+        //add the correct answer to available choices
+        choices.add(pairs.get(currentQuestion));
+
+        //populate the rest of the choices with random answers
+        for (int i = 0; i<(NUM_CHOICES-1); i++) {
+
+            int randIndex = rand.nextInt(answers.size());
+
+            //make sure all answers are unique
+            while (choices.contains(answers.get(randIndex))) {
+                randIndex = rand.nextInt(answers.size());
+            }
+
+            choices.add(answers.get(randIndex));
+        }
+
+        //randomize the order the answers will appear
+        Collections.shuffle(choices);
+    }
+
     private void loadTextFile(Context context) {
 
         InputStream inputStream;
@@ -83,14 +109,14 @@ public class QuizManager {
 
         } catch (IOException e) {
 
-            e.printStackTrace();
+            Log.e("FileIOError", "Error with file io");
 
         } finally {
             if (reader != null) {
                 try {
                     reader.close();
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    Log.e("BRClose", "Error closing BufferedReader");
                 }
             }
         }
@@ -103,30 +129,5 @@ public class QuizManager {
             pairs.put(questions.get(i), answers.get(i));
         }
 
-    }
-
-    public void createChoiceSet() {
-
-        choices = new ArrayList<>(NUM_CHOICES);
-        Random rand = new Random();
-
-        //add the correct answer to available choices
-        choices.add(pairs.get(currentQuestion));
-
-        //populate the rest of the choices with random answers
-        for (int i = 0; i<(NUM_CHOICES-1); i++) {
-
-            int randIndex = rand.nextInt(answers.size());
-
-            //make sure all answers are unique
-            while (choices.contains(answers.get(randIndex))) {
-                randIndex = rand.nextInt(answers.size());
-            }
-
-            choices.add(answers.get(randIndex));
-        }
-
-        //randomize the order the answers will appear
-        Collections.shuffle(choices);
     }
 }
