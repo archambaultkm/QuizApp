@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 public class ResultsActivity extends Activity {
 
-    private TextView tvUserTopic;
     private TextView tvScore;
     private Button btnPlayAgain;
 
@@ -23,7 +22,6 @@ public class ResultsActivity extends Activity {
         setContentView(R.layout.activity_results);
 
         //instantiate widgets
-        tvUserTopic = findViewById(R.id.tvUserTopic);
         tvScore = findViewById(R.id.tvUserScore);
         btnPlayAgain = findViewById(R.id.btnPlayAgain);
 
@@ -34,8 +32,6 @@ public class ResultsActivity extends Activity {
             answeredCorrectly = extras.getInt("correct");
         }
 
-        //this will need to be read in from the text file if I keep this feature.
-        tvUserTopic.setText("Imported Topic");
         //set text to be passed user score / passed total questions
         tvScore.setText(answeredCorrectly + "/" + totalQuestions);
 

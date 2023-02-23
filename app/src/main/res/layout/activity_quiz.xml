@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#81A7F0"
+    android:background="@color/backgroundDarkBlue"
     android:orientation="vertical"
-    >
-
+    android:padding="10dp"
+    android:paddingBottom="20dp">
 
     <TextView
-        android:id="@+id/tvUserTopic"
+        android:id="@+id/tvProgressCount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
         android:layout_weight="1"
         android:paddingTop="20dp"
-        android:text="@string/txtUserTopic"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="20sp" />
@@ -24,6 +22,7 @@
     <ProgressBar
         android:id="@+id/pbProgress"
         style="?android:attr/progressBarStyleHorizontal"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -36,101 +35,106 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="2"
+        android:padding="20dp"
         android:text="@string/txtQuestion"
-        android:textSize="22sp"
         android:textAlignment="center"
-        android:textColor="#FFFFFF" />
+        android:textColor="#FFFFFF"
+        android:textSize="22sp" />
 
     <Button
         android:id="@+id/btnA1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:backgroundTint="#5289F2"
-
-        android:insetLeft="30dp"
-        android:insetTop="20dp"
-        android:insetRight="30dp"
-        android:insetBottom="20dp"
-
-        android:text="@string/txtAnswer1"
-        android:fontFamily="serif"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-
-        app:cornerRadius="70dp"
+        android:backgroundTint="@color/btnDefault"
 
         android:elevation="5dp"
+        android:fontFamily="serif"
+        android:insetLeft="30dp"
+        android:insetTop="20dp"
+
+        android:insetRight="30dp"
+        android:insetBottom="20dp"
+        android:padding="20dp"
+        android:stateListAnimator="@null"
+
+        android:text="@string/txtAnswer1"
+
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
         android:translationZ="2dp"
-        android:stateListAnimator="@null"/>
+        app:cornerRadius="70dp" />
 
     <Button
         android:id="@+id/btnA2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:backgroundTint="#5289F2"
-
-        android:insetLeft="30dp"
-        android:insetTop="20dp"
-        android:insetRight="30dp"
-        android:insetBottom="20dp"
-
-        android:text="@string/txtAnswer2"
-        android:fontFamily="serif"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-
-        app:cornerRadius="70dp"
+        android:backgroundTint="@color/btnDefault"
 
         android:elevation="5dp"
+        android:fontFamily="serif"
+        android:insetLeft="30dp"
+        android:insetTop="20dp"
+
+        android:insetRight="30dp"
+        android:insetBottom="20dp"
+        android:padding="20dp"
+        android:stateListAnimator="@null"
+
+        android:text="@string/txtAnswer2"
+
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
         android:translationZ="2dp"
-        android:stateListAnimator="@null"/>
+        app:cornerRadius="70dp" />
 
     <Button
         android:id="@+id/btnA3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:backgroundTint="#5289F2"
-
-        android:insetLeft="30dp"
-        android:insetTop="20dp"
-        android:insetRight="30dp"
-        android:insetBottom="20dp"
-
-        android:text="@string/txtAnswer3"
-        android:fontFamily="serif"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-
-        app:cornerRadius="70dp"
+        android:backgroundTint="@color/btnDefault"
 
         android:elevation="5dp"
+        android:fontFamily="serif"
+        android:insetLeft="30dp"
+        android:insetTop="20dp"
+
+        android:insetRight="30dp"
+        android:insetBottom="20dp"
+        android:padding="20dp"
+        android:stateListAnimator="@null"
+
+        android:text="@string/txtAnswer3"
+
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
         android:translationZ="2dp"
-        android:stateListAnimator="@null"/>
+        app:cornerRadius="70dp" />
 
     <Button
         android:id="@+id/btnA4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:backgroundTint="#5289F2"
+        android:backgroundTint="@color/btnDefault"
 
+        android:elevation="5dp"
+        android:fontFamily="serif"
         android:insetLeft="30dp"
         android:insetTop="20dp"
+
         android:insetRight="30dp"
         android:insetBottom="20dp"
+        android:padding="20dp"
+        android:stateListAnimator="@null"
 
         android:text="@string/txtAnswer4"
-        android:fontFamily="serif"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
-
-        app:cornerRadius="70dp"
-        android:elevation="5dp"
         android:translationZ="2dp"
-        android:stateListAnimator="@null"/>
+        app:cornerRadius="70dp" />
 
     <Button
         android:id="@+id/btnNext"
@@ -139,24 +143,25 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
 
-        android:backgroundTint="#5189F1"
+        android:backgroundTint="@color/btnDefault"
+
+        android:elevation="5dp"
 
         android:fontFamily="serif"
-
         android:insetLeft="30dp"
         android:insetTop="20dp"
         android:insetRight="30dp"
-        android:insetBottom="20dp"
 
+        android:insetBottom="20dp"
+        android:stateListAnimator="@null"
         android:text="@string/txtNext"
+
+        android:textColor="#FFFFFF"
         android:textSize="16sp"
 
-        android:visibility="invisible"
-        app:cornerRadius="70dp"
-
-        android:elevation="5dp"
         android:translationZ="2dp"
-        android:stateListAnimator="@null"/>
+        android:visibility="invisible"
+        app:cornerRadius="70dp" />
 
 </LinearLayout>
 

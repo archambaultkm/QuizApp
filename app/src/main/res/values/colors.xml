@@ -7,6 +7,13 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="green">#00FF00</color>
-    <color name="red">#FF0000</color>
+
+    <!--My colours-->
+    <color name="correctColor">#6DCD6F</color>
+    <color name="incorrectColor">#E74A4A</color>
+
+    <color name="btnDefault">#5289F2</color>
+
+    <color name="backgroundDarkBlue">#81A7F0</color>
+    <color name="backgroundLightBlue">#DCEAFF</color>
 </resources>

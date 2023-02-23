@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="#DCEAFF"
     android:orientation="vertical"
+    android:padding="5dp"
     android:textAlignment="center"
     tools:context=".MainActivity">
 
@@ -23,27 +24,14 @@
         android:textSize="48sp" />
 
     <TextView
-        android:id="@+id/tvUserTopic"
+        android:id="@+id/tvStart"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:fontFamily="serif"
-        android:paddingTop="60dp"
+        android:paddingTop="130dp"
         android:rotationX="0"
-        android:text="@string/txtTopicTitle"
-        android:textAlignment="center"
-        android:textColor="#81A7F0"
-        android:textSize="24sp" />
-
-    <TextView
-        android:id="@+id/tvUserTopic"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:fontFamily="serif"
-        android:paddingTop="60dp"
-        android:rotationX="0"
-        android:text="@string/txtUserTopic"
+        android:text="@string/txtStartText"
         android:textAlignment="center"
         android:textColor="#81A7F0"
         android:textSize="24sp" />
@@ -57,9 +45,9 @@
         android:elevation="5dp"
         android:fontFamily="serif"
         android:insetLeft="50dp"
-        android:insetTop="100dp"
+        android:insetTop="80dp"
         android:insetRight="50dp"
-        android:insetBottom="100dp"
+        android:insetBottom="80dp"
         android:stateListAnimator="@null"
         android:text="@string/txtPlay"
         android:textSize="30sp"

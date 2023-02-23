@@ -10,11 +10,15 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+
+import com.google.android.material.snackbar.Snackbar;
+
 public class QuizActivity extends Activity {
 
     private static final String TAG = "QuizActivity";
 
-    private TextView tvUserTopic, tvQuestion;
+    private TextView tvQuestion, tvProgressCount;
     private ProgressBar pb;
     private Button btnAns1, btnAns2, btnAns3, btnAns4, btnNext;
 
@@ -30,8 +34,8 @@ public class QuizActivity extends Activity {
         setContentView(R.layout.activity_quiz);
 
         //instantiate views
-        tvUserTopic = findViewById(R.id.tvUserTopic);
         tvQuestion = findViewById(R.id.tvQuestion);
+        tvProgressCount = findViewById(R.id.tvProgressCount);
 
         pb = findViewById(R.id.pbProgress);
 
@@ -52,8 +56,14 @@ public class QuizActivity extends Activity {
             @Override
             public void onClick(View view) {
 
-                //on app creation make a constant number for total starting questions
-                if (progressCount == quizManager.getTotalQuestions()) {
+                //so long as the user hasn't progressed through all questions, continue asking more
+                if (progressCount != quizManager.getTotalQuestions()) {
+
+                    quizManager.removeAnsweredQuestion();
+                    newQuestion();
+
+                //move to results page once all questions are exhausted
+                } else {
 
                     Intent i = new Intent(QuizActivity.this, ResultsActivity.class);
 
@@ -63,17 +73,12 @@ public class QuizActivity extends Activity {
 
                     startActivity(i);
 
-                } else {
-
-                    quizManager.removeAnsweredQuestion();
-                    newQuestion();
                 }
             }
         }); //end onclick)
 
         quizManager = new QuizManager(getApplicationContext());
-        //the QuizManager class will:
-        //load the file, create arraylists and hash, and handle randomizing questions/answers
+        //the QuizManager class loads the file, create arraylists and hash, and handle randomizing questions/answers
 
         //set the bounds of the progress bar
         pb.setMax(quizManager.getTotalQuestions());
@@ -100,16 +105,17 @@ public class QuizActivity extends Activity {
                 //clickedButton.setBackground(green button drawable);
                 //doesn't work:
                 //clickedButton.setBackgroundColor(getResources().getColor(R.color.green));
-                Toast.makeText(QuizActivity.this,"Correct!",Toast.LENGTH_SHORT).show();
+                Toast.makeText(QuizActivity.this, R.string.txtCorrect, Toast.LENGTH_SHORT).show();
                 correctlyAnsweredCount += 1;
 
             } else {
                 //clickedButton.setBackground(red button drawable);
-                Toast.makeText(QuizActivity.this,"Incorrect!",Toast.LENGTH_SHORT).show();
+                Toast.makeText(QuizActivity.this, R.string.txtIncorrect, Toast.LENGTH_SHORT).show();
             }
 
-            //disable buttons
-            //underline text to remind user which button they clicked
+            //disable buttons to prevent multiple answers on the same question
+            setButtonsEnabled(false);
+
             btnNext.setVisibility(View.VISIBLE);
         }
     }; //end onclick
@@ -117,15 +123,15 @@ public class QuizActivity extends Activity {
     private void newQuestion() {
 
         btnNext.setVisibility(View.INVISIBLE);
+        //resetButtons();
+        setButtonsEnabled(true);
 
-        progressCount += 1;
-        pb.setProgress(progressCount);
+        updateProgressBar();
 
         tvQuestion.setText(quizManager.getCurrentQuestion());
 
         //I had to do this bc calling this method internally in the
-        // getchoices was randomizing the return and I was getting duplicates.
-        //I need to find a way to not have to do this:
+        //getchoices() method was randomizing the return and I was getting duplicates
         quizManager.createChoiceSet();
 
         btnAns1.setText(quizManager.getChoices().get(0));
@@ -134,4 +140,23 @@ public class QuizActivity extends Activity {
         btnAns4.setText(quizManager.getChoices().get(3));
     }
 
+    private void updateProgressBar() {
+        progressCount += 1;
+        pb.setProgress(progressCount);
+
+        tvProgressCount.setText("Question " + progressCount + " of " + quizManager.getTotalQuestions());
+    }
+
+    //only needed if you can get changing colours to work:
+    //    private void resetButtons() {
+//        btnAns1.setBackgroundColor(R.color);
+//        btnAns2.refreshDrawableState();
+//    }
+
+    private void setButtonsEnabled(boolean toggle) {
+        btnAns1.setEnabled(toggle);
+        btnAns2.setEnabled(toggle);
+        btnAns3.setEnabled(toggle);
+        btnAns4.setEnabled(toggle);
+    }
 }

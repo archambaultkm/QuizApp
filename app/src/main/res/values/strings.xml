@@ -1,10 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">QuizApp</string>
-    <string name="txtTopicTitle">Topic: </string>
-    <string name="txtUserTopic">UserTopic</string>
+    <string name="txtStartText">Good luck!</string>
     <string name="txtPlay">Play</string>
     <string name="txtQuestion">question</string>
-    <string name="txtAnswer1" tools:ignore="Typos">answer1</string>
+    <string name="txtAnswer1">answer1</string>
     <string name="txtAnswer2">answer2</string>
     <string name="txtAnswer3">answer3</string>
     <string name="txtAnswer4">answer4</string>
@@ -13,7 +12,7 @@
     <string name="txtScoreTitle">Your Score:</string>
     <string name="txtUserScore">0/0</string>
     <string name="txtPlayAgain">Play Again</string>
-    <string name="txtProgress">progress</string>
+    <string name="txtProgress">Progress</string>
     <string name="txtCorrect">Correct!</string>
     <string name="txtIncorrect">Incorrect!</string>
 </resources>
