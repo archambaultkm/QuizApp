@@ -37,6 +37,7 @@ public class QuizManager {
     }
 
     public ArrayList<String> getChoices() {
+        createChoiceSet();
         return choices;
     }
 

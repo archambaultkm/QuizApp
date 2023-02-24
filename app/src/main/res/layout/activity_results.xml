@@ -1,56 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#81A7F0"
+    android:layout_margin="1dp"
+    android:padding="60dp"
+    android:background="@color/backgroundDark"
     android:orientation="vertical"
-    android:textAlignment="center">
+    tools:context=".ResultsActivity">
 
     <TextView
         android:id="@+id/tvScoreTitle"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:fontFamily="serif"
-        android:paddingTop="60dp"
-        android:rotationX="0"
+        android:fontFamily="@font/montserrat"
+        android:gravity="center"
         android:text="@string/txtScoreTitle"
         android:textAlignment="center"
         android:textAllCaps="false"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp" />
+        android:textColor="@color/white"
+        android:textSize="40sp" />
 
     <TextView
         android:id="@+id/tvUserScore"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2"
-        android:fontFamily="serif"
-        android:paddingTop="140dp"
+        android:fontFamily="@font/montserrat"
+        android:gravity="center"
         android:rotationX="0"
         android:text="@string/txtUserScore"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp" />
+        android:textColor="@color/white"
+        android:textSize="80sp" />
 
     <Button
         android:id="@+id/btnPlayAgain"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
-        android:backgroundTint="#5289F2"
-        android:fontFamily="serif"
-        android:insetLeft="50dp"
-        android:insetTop="100dp"
-        android:insetRight="50dp"
-        android:insetBottom="100dp"
+        android:layout_margin="10dp"
+        android:layout_weight="0.5"
+
+        android:background="@drawable/button_default"
+
+        android:fontFamily="@font/montserrat"
         android:text="@string/txtPlayAgain"
-        android:textSize="24sp"
-        app:cornerRadius="70dp"
-        android:translationZ="2dp"
-        android:elevation="5dp"
-        android:stateListAnimator="@null"/>
+        android:textColor="@color/white"
+        android:textSize="24sp" />
 
 </LinearLayout>

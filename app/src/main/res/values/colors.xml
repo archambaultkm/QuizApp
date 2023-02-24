@@ -12,8 +12,9 @@
     <color name="correctColor">#6DCD6F</color>
     <color name="incorrectColor">#E74A4A</color>
 
-    <color name="btnDefault">#5289F2</color>
+    <color name="btnDefault">#9f86c0</color>
+    <color name="btnContrast">#231942</color>
 
-    <color name="backgroundDarkBlue">#81A7F0</color>
-    <color name="backgroundLightBlue">#DCEAFF</color>
+    <color name="backgroundDark">#be95c4</color>
+    <color name="backgroundLight">#e0b1cb</color>
 </resources>

@@ -9,6 +9,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class QuizActivity extends Activity {
 
     private TextView tvQuestion, tvProgressCount;
@@ -111,23 +113,21 @@ public class QuizActivity extends Activity {
         }
     }; //end onclick
 
-    //updates ui
+    //updates ui with new values
     private void newQuestion() {
 
         btnNext.setVisibility(View.INVISIBLE);
-        setButtonsEnabled(true);
         resetButtons();
-
         updateProgressBar();
-        //see if there's a way to not need this public method from
-        quizManager.createChoiceSet();
+
+        ArrayList<String> choices = quizManager.getChoices();
 
         //update the text displayed
         tvQuestion.setText(quizManager.getCurrentQuestion());
-        btnAns1.setText(quizManager.getChoices().get(0));
-        btnAns2.setText(quizManager.getChoices().get(1));
-        btnAns3.setText(quizManager.getChoices().get(2));
-        btnAns4.setText(quizManager.getChoices().get(3));
+        btnAns1.setText(choices.get(0));
+        btnAns2.setText(choices.get(1));
+        btnAns3.setText(choices.get(2));
+        btnAns4.setText(choices.get(3));
     }
 
     private void updateProgressBar() {
@@ -138,6 +138,9 @@ public class QuizActivity extends Activity {
     }
 
     private void resetButtons() {
+
+        setButtonsEnabled(true);
+
         btnAns1.setBackground(getResources().getDrawable(R.drawable.button_default, getTheme()));
         btnAns2.setBackground(getResources().getDrawable(R.drawable.button_default, getTheme()));
         btnAns3.setBackground(getResources().getDrawable(R.drawable.button_default, getTheme()));
