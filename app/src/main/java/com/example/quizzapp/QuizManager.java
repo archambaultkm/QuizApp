@@ -14,26 +14,21 @@ import java.util.Random;
 
 public class QuizManager {
 
-    private final ArrayList<String> questions = new ArrayList<>();
-    private final ArrayList<String> answers = new ArrayList<>();
+    private final ArrayList<String> questions;
+    private final ArrayList<String> answers;
 
-    private final HashMap<String, String> pairs = new HashMap<>();
+    private final HashMap<String, String> pairs;
 
-    private final int NUM_CHOICES = 4;
     private ArrayList<String> choices;
 
     private String currentQuestion;
-    private final int totalQuestions;
+    private int totalQuestions;
 
-    public QuizManager(Context context) {
+    public QuizManager() {
 
-        loadTextFile(context);
-
-        createHash();
-
-        Collections.shuffle(questions);
-        currentQuestion = questions.get(0);
-        totalQuestions = questions.size();
+        this.pairs = new HashMap<>();
+        this.questions = new ArrayList<>();
+        this.answers = new ArrayList<>();
     }
 
     public ArrayList<String> getChoices() {
@@ -53,13 +48,29 @@ public class QuizManager {
         return totalQuestions;
     }
 
+    public void loadQuiz(Context context) {
+
+        //parse the text file into q/a pairs
+        loadTextFile(context);
+        createHash();
+
+        //randomize the order of questions
+        Collections.shuffle(questions);
+        currentQuestion = questions.get(0);
+        totalQuestions = questions.size();
+    }
+
     public void removeAnsweredQuestion() {
+        //burn down the used question
         questions.remove(0);
+        //move to next available question
         currentQuestion = questions.get(0);
     }
 
-    public void createChoiceSet() {
+    //create a random new set of answers for a new question, and include the correct answer
+    private void createChoiceSet() {
 
+        int NUM_CHOICES = 4;
         choices = new ArrayList<>(NUM_CHOICES);
         Random rand = new Random();
 
@@ -67,7 +78,7 @@ public class QuizManager {
         choices.add(pairs.get(currentQuestion));
 
         //populate the rest of the choices with random answers
-        for (int i = 0; i<(NUM_CHOICES-1); i++) {
+        for (int i = 0; i<(NUM_CHOICES -1); i++) {
 
             int randIndex = rand.nextInt(answers.size());
 
@@ -83,6 +94,7 @@ public class QuizManager {
         Collections.shuffle(choices);
     }
 
+    //parse delimited text file and populate arraylists
     private void loadTextFile(Context context) {
 
         InputStream inputStream;
@@ -117,18 +129,17 @@ public class QuizManager {
                 try {
                     reader.close();
                 } catch (Exception e) {
-                    Log.e("BRClose", "Error closing BufferedReader");
+                    Log.e("BRClose", "Error closing BufferedReader/file");
                 }
             }
         }
     }
 
+    //create relationship between questions and answers, used to retrieve correct answer
     private void createHash() {
 
-        //create relationship between questions and answers, used to retrieve correct answer
         for (int i=0; i<questions.size();i++) {
             pairs.put(questions.get(i), answers.get(i));
         }
-
     }
 }

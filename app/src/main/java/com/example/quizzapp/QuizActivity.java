@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -72,8 +71,9 @@ public class QuizActivity extends Activity {
             }
         }); //end onclick)
 
-        quizManager = new QuizManager(getApplicationContext());
         //the QuizManager class loads the file, create arraylists and hash, and handle randomizing questions/answers
+        quizManager = new QuizManager();
+        quizManager.loadQuiz(getApplicationContext());
 
         //set the bounds of the progress bar
         pb.setMax(quizManager.getTotalQuestions());
@@ -100,12 +100,10 @@ public class QuizActivity extends Activity {
 
                 clickedButton.setBackground(getResources().getDrawable(R.drawable.button_correct, getTheme()));
                 correctlyAnsweredCount += 1;
-
             } else {
 
                 clickedButton.setBackground(getResources().getDrawable(R.drawable.button_incorrect, getTheme()));
-                }
-
+            }
             //disable buttons to prevent multiple answers on the same question
             setButtonsEnabled(false);
 
@@ -117,6 +115,7 @@ public class QuizActivity extends Activity {
     private void newQuestion() {
 
         btnNext.setVisibility(View.INVISIBLE);
+        //get rid of any colour changes on the answer buttons
         resetButtons();
         updateProgressBar();
 
